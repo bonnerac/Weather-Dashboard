@@ -1,0 +1,19 @@
+h1 {
+    text-align: center;
+    color: white;
+}
+#header{
+    background-color: #696B6B;
+    height: 60px;
+}
+#right-column{
+    background-color: rgb(233, 233, 233);
+    height: 500px;
+    padding-left: 20px;
+}
+.btn{
+    background-color: blue;
+}
+#city-title{
+    margin-left: 5px;
+}

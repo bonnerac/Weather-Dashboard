@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/3a7875c0fd.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+  <div id="header">
+    <h1>Weather Dashboard</h1>
+  </div>
+  <div class=>
+    <div class="row">
+      <div class="col-4" id="right-column">
+        <div>
+          <h3 id="city-title">Search for a city:</h3>
+        </div>
+        <form>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search">
+            <div class="input-group-btn">
+              <button class="btn btn-primary" type="submit">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-8">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero, modi. Illum, beatae suscipit obcaecati id aperiam rerum veritatis adipisci assumenda. Ipsa cum repellendus, nesciunt debitis perferendis voluptas? Earum, corporis iusto!
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+  <script>
+  
+    // creates form and stores user information for use in currentConditions
+    function createForm(){
+      var input = $("<input/>", {
+      type: "text",
+      class: "form-control",
+      id: "nameId",
+      placeholder: "Enter Full Namee"
+});
+      document.append(input)
+      }
+  createForm();  
+
+
+    
+    // API key and cityName variables
+    var APIKey = "3f392ece1b42ee18ccf75dcd0de40826";
+    var cityName = "Chicago"
+    var body = $("<div>")
+    // URL with cityName and APIkey variables
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey;
+
+
+  
+
+    // currentConditions function: makes ajax call to weather API using cityName recieved from user.
+    function currentConditions(){
+      $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).then(function (conditions) {
+          console.log(conditions);
+          
+        })
+    }
+    currentConditions();
+
+
+
+
+
+
+    
+  </script>
+</body>
+</html>
