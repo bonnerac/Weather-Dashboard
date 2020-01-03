@@ -75,7 +75,7 @@
           url: queryURL,
           method: "GET"
         }).then(function (conditions) {
-          console.log(conditions);
+          // console.log(conditions);
           // Put City Name on page
           $("#city").prepend(conditions.name)
           // Get Local Time and put it on page
@@ -106,7 +106,7 @@
             url: uvURL,
             method: "GET"
           }).then(function (index) {
-            console.log(index)
+            // console.log(index)
             var uvIndex = index.value
             $("#UV-index").text("UV Index: " + uvIndex);
             if (uvIndex < 3) {
@@ -126,11 +126,36 @@
             }
           })
 
+          var fiveDayURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + APIkey + "&units=imperial"
+
+          console.log(fiveDayURL)
+          $.ajax({
+            url: fiveDayURL,
+            method: "GET"
+          }).then(function (forecast) {
+            console.log(forecast)
+          })
+
+
+
+
+
         })
       }
       currentConditions();
 
     });
+
+
+
+
+
+
+
+
+
+
+
   </script>
 </body>
 
