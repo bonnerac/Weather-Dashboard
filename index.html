@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/3a7875c0fd.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="moment.js"></script>
   <title>Document</title>
 </head>
 
@@ -39,8 +41,14 @@
         <div class="card">
           <div class="card-body">
             <h2 id="city">
-              <img id="wicon" src="" alt="Weather icon">
+              <img id="weather-icon" src="" alt="Weather icon">
             </h2>
+            <h5 id="temp"></h5>
+            <h5 id="humidity"></h5>
+            <h5 id="wind-speed"></h5>
+            <h5>
+              <span id="UV-index"></span>
+            </h5>
           </div>
         </div>
       </div>
@@ -49,13 +57,9 @@
   </div>
 
 
-
-
-
-
-
-
   <script>
+    // Hide broken weather icon on default
+    $("#weather-icon").hide();
 
     // Create on Click event to capture City Name
     $("#submit").on("click", function (event) {
@@ -63,7 +67,7 @@
       var cityName = $("#text").val();
       // API variables
       var APIKey = "3f392ece1b42ee18ccf75dcd0de40826";
-      var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey;
+      var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + APIKey;
 
       // ajax function to get current conditions for cityName
       function currentConditions() {
@@ -73,60 +77,60 @@
         }).then(function (conditions) {
           console.log(conditions);
           // Put City Name on page
-          $("#city").append(conditions.name)
+          $("#city").prepend(conditions.name)
+          // Get Local Time and put it on page
+          var timeZone = (conditions.timezone) / 60
+          var time = moment().utcOffset(timeZone).format('LLL')
+          $("#city").append(time)
           // Put current weather icon on page
           var iconCode = (conditions.weather[0].icon)
-          var iconURL = ("http://openweathermap.org/img/wn/" + iconCode + "@2x.png")
-          $('#wicon').attr('src', iconURL);
+          var iconURL = ("http://openweathermap.org/img/wn/" + iconCode + "@2x.png");
+          $('#weather-icon').attr('src', iconURL);
+          $("#weather-icon").show();
+          // Put current temperature on page
+          var temp = conditions.main.temp
+          $("#temp").text("Temperature: " + temp + "°");
+          // Put current humidity on page
+          var humidity = conditions.main.humidity
+          $("#humidity").text("Humidity: " + humidity + "%");
+          // Put current windspeed on page
+          var windspeed = conditions.wind.speed
+          $("#wind-speed").text("Wind Speed: " + windspeed + " MPH")
+          // Put current UV index on page
+          var longitude = conditions.coord.lon
+          var latitude = conditions.coord.lat
+          var APIkey = "3f392ece1b42ee18ccf75dcd0de40826";
+          var uvURL = "http://api.openweathermap.org/data/2.5/uvi?appid=" + APIkey + "&lat=" + latitude + "&lon=" + longitude;
+
+          $.ajax({
+            url: uvURL,
+            method: "GET"
+          }).then(function (index) {
+            console.log(index)
+            var uvIndex = index.value
+            $("#UV-index").text("UV Index: " + uvIndex);
+            if (uvIndex < 3) {
+              $("#UV-index").css("background-color", "green")
+            }
+            else if (uvIndex >= 3 && uvIndex < 6) {
+              $("#UV-index").css("background-color", "yellow")
+            }
+            else if (uvIndex >= 6 && uvIndex < 8) {
+              $("#UV-index").css("background-color", "orange")
+            }
+            else if (uvIndex >= 8 && uvIndex < 11) {
+              $("#UV-index").css("background-color", "red")
+            }
+            else if (uvIndex >= 11) {
+              $("#UV-index").css("background-color", "violet")
+            }
+          })
 
         })
       }
       currentConditions();
 
     });
-
-
-    // function createForm() {
-    //   var input = $("<input/>", {
-    //     type: "text",
-    //     class: "form-control",
-    //     id: "nameId",
-    //     placeholder: "Enter Full Namee"
-    //   });
-    //   document.append(input)
-    // }
-    // createForm();
-
-
-
-    // // API key and cityName variables
-    // var APIKey = "3f392ece1b42ee18ccf75dcd0de40826";
-    // var cityName = "Chicago"
-    // var body = $("card-body")
-    // // URL with cityName and APIkey variables
-    // var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey;
-
-
-
-
-    // // currentConditions function: makes ajax call to weather API using cityName recieved from user.
-    // function currentConditions() {
-    //   $.ajax({
-    //     url: queryURL,
-    //     method: "GET"
-    //   }).then(function (conditions) {
-    //     console.log(conditions);
-
-    //   })
-    // }
-    // currentConditions();
-
-
-
-
-
-
-
   </script>
 </body>
 
