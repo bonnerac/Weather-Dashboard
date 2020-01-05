@@ -26,3 +26,6 @@ h1 {
 .five-day{
     color: white;
 }
+.user-data{
+    border: black, solid, 1px;
+}

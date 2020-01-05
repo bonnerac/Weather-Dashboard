@@ -228,28 +228,31 @@
             $("#weather-icon-5").show();
 
             // Add temperatures to each blue card.
-            var tempOne = forecast.list[3].main.temp
-            $(".temp-1").text("Temp: " + tempOne + " °F");
-            var tempTwo = forecast.list[11].main.temp
-            $(".temp-2").text("Temp: " + tempTwo + " °F");
-            var tempThree = forecast.list[19].main.temp
-            $(".temp-3").text("Temp: " + tempThree + " °F");
-            var tempFour = forecast.list[27].main.temp
-            $(".temp-4").text("Temp: " + tempFour + " °F");
-            var tempFive = forecast.list[35].main.temp
-            $(".temp-5").text("Temp: " + tempFive + " °F");
+            $(".temp-1").text("Temp: " + forecast.list[3].main.temp + " °F");
+            $(".temp-2").text("Temp: " + forecast.list[11].main.temp + " °F");
+            $(".temp-3").text("Temp: " + forecast.list[19].main.temp + " °F");
+            $(".temp-4").text("Temp: " + forecast.list[27].main.temp + " °F");
+            $(".temp-5").text("Temp: " + forecast.list[35].main.temp + " °F");
 
             // Add humidity to each blue card.
-            var humidityOne = forecast.list[3].main.humidity
-            $(".humidity-1").text("Humidity: " + humidityOne + "%");
-            var humidityTwo = forecast.list[11].main.humidity
-            $(".humidity-2").text("Humidity: " + humidityTwo + "%");
-            var humidityThree = forecast.list[19].main.humidity
-            $(".humidity-3").text("Humidity: " + humidityThree + "%");
-            var humidityFour = forecast.list[27].main.humidity
-            $(".humidity-4").text("Humidity: " + humidityFour + "%");
-            var humidityFive = forecast.list[35].main.humidity
-            $(".humidity-5").text("Humidity: " + humidityFive + "%");
+
+            $(".humidity-1").text("Humidity: " + forecast.list[3].main.humidity + "%");
+            $(".humidity-2").text("Humidity: " + forecast.list[11].main.humidity + "%");
+            $(".humidity-3").text("Humidity: " + forecast.list[19].main.humidity + "%");
+            $(".humidity-4").text("Humidity: " + forecast.list[27].main.humidity + "%");
+            $(".humidity-5").text("Humidity: " + forecast.list[35].main.humidity + "%");
+
+
+            // use local storage to store and display search history. NOT WORKING CORRECTLY
+            var userCityData = $("#text").val()
+            localStorage.setItem("data", JSON.stringify(userCityData))
+            var data = JSON.parse(localStorage.getItem("data"));
+            var dataArray = [];
+            dataArray.push(data)
+            console.log(dataArray)
+            $("<div>").attr("id", "user-data").appendTo($("#right-column"))
+            $("#user-data").attr("class", "card-body")
+            $("#user-data").text(data)
           })
 
 
