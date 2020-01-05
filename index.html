@@ -111,6 +111,8 @@
     $("#weather-icon").hide();
     $(".city").hide();
     $(".forecast").hide();
+    // sets an array for search history
+    var dataArray = [];
 
 
     // Create on Click event to capture City Name
@@ -246,13 +248,14 @@
             // use local storage to store and display search history. NOT WORKING CORRECTLY
             var userCityData = $("#text").val()
             localStorage.setItem("data", JSON.stringify(userCityData))
+            dataArray.push(userCityData)
             var data = JSON.parse(localStorage.getItem("data"));
-            var dataArray = [];
-            dataArray.push(data)
-            console.log(dataArray)
-            $("<div>").attr("id", "user-data").appendTo($("#right-column"))
-            $("#user-data").attr("class", "card-body")
-            $("#user-data").text(data)
+
+            for (i = 0; i < dataArray.length; i++) {
+              $("<div>").attr("id", "user-data").appendTo($("#right-column"))
+              $("#user-data").attr("class", "card-body")
+              $("#user-data").text(dataArray)
+            }
           })
 
 
