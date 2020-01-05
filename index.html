@@ -37,7 +37,7 @@
         </form>
       </div>
       <div class="col-8" id="city-text">
-        <div class="card">
+        <div class="card city">
           <div class="card-body">
             <h2 id="city">
               <img id="weather-icon" src="" alt="Weather icon">
@@ -50,8 +50,8 @@
             </h5>
           </div>
         </div>
-        <div class="row">
-          <div class="row">
+        <div class="row forecast">
+          <div class="row ">
             <h2 id="forecast-title">5-Day Forecast:</h2>
           </div>
           <div class="card-deck col-12">
@@ -107,8 +107,11 @@
 
 
   <script>
-    // Hide broken weather icon on default
+    // Hide all generated info on default
     $("#weather-icon").hide();
+    $(".city").hide();
+    $(".forecast").hide();
+
 
     // Create on Click event to capture City Name
     $("#submit").on("click", function (event) {
@@ -125,8 +128,10 @@
           method: "GET"
         }).then(function (conditions) {
           console.log(conditions);
+          $("#city").empty();
+          $(".city").show();
           // Put City Name on page
-          $("#city").prepend(conditions.name)
+          $("#city").prepend(conditions.name + ": ")
           // Get Local Time and put it on page
           var timeZone = (conditions.timezone) / 60
           var time = moment().utcOffset(timeZone).format('LLL')
@@ -183,6 +188,7 @@
             method: "GET"
           }).then(function (forecast) {
             console.log(forecast)
+            $(".forecast").show();
             // Add dates to the top of each blue card.
             var timestamp1 = moment.unix(forecast.list[3].dt);
             $(".card-title-1").text(timestamp1.format("L"));
