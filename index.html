@@ -12,7 +12,6 @@
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/3a7875c0fd.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="moment.js"></script>
   <title>Document</title>
 </head>
 
@@ -51,8 +50,58 @@
             </h5>
           </div>
         </div>
+        <div class="row">
+          <div class="row">
+            <h2 id="forecast-title">5-Day Forecast:</h2>
+          </div>
+          <div class="card-deck col-12">
+            <div class="card bg-primary">
+              <div class="card-body five-day">
+                <h5 class="card-title-1">Card title</h5>
+                <img id="weather-icon-1" src="" alt="Weather icon-1">
+                <p class="temp-1"></p>
+                <p class="humidity-1"></p>
+              </div>
+            </div>
+            <div class="card bg-primary">
+              <div class="card-body five-day">
+                <h5 class="card-title-2">Card title</h5>
+                <img id="weather-icon-2" src="" alt="Weather icon-2">
+                <p class="temp-2"></p>
+                <p class="humidity-2"></p>
+              </div>
+            </div>
+            <div class="card bg-primary">
+              <div class="card-body five-day">
+                <h5 class="card-title-3">Card title</h5>
+                <img id="weather-icon-3" src="" alt="Weather icon-3">
+                <p class="temp-3"></p>
+                <p class="humidity-3"></p>
+              </div>
+            </div>
+            <div class="card bg-primary">
+              <div class="card-body five-day">
+                <h5 class="card-title-4">Card title</h5>
+                <img id="weather-icon-4" src="" alt="Weather icon-4">
+                <p class="temp-4"></p>
+                <p class="humidity-4"></p>
+              </div>
+            </div>
+            <div class="card bg-primary">
+              <div class="card-body five-day">
+                <h5 class="card-title-5">Card title</h5>
+                <img id="weather-icon-5" src="" alt="Weather icon-5">
+                <p class="temp-5"></p>
+                <p class="humidity-5"></p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
+
     </div>
+  </div>
 
   </div>
 
@@ -75,7 +124,7 @@
           url: queryURL,
           method: "GET"
         }).then(function (conditions) {
-          // console.log(conditions);
+          console.log(conditions);
           // Put City Name on page
           $("#city").prepend(conditions.name)
           // Get Local Time and put it on page
@@ -134,6 +183,67 @@
             method: "GET"
           }).then(function (forecast) {
             console.log(forecast)
+            // Add dates to the top of each blue card.
+            var timestamp1 = moment.unix(forecast.list[3].dt);
+            $(".card-title-1").text(timestamp1.format("L"));
+            var timestamp2 = moment.unix(forecast.list[11].dt);
+            $(".card-title-2").text(timestamp2.format("L"));
+            var timestamp3 = moment.unix(forecast.list[19].dt);
+            $(".card-title-3").text(timestamp3.format("L"));
+            var timestamp4 = moment.unix(forecast.list[27].dt);
+            $(".card-title-4").text(timestamp4.format("L"));
+            var timestamp5 = moment.unix(forecast.list[35].dt);
+            $(".card-title-5").text(timestamp5.format("L"));
+
+            // Add icons to each blue card.
+            var iconCodeOne = (forecast.list[3].weather[0].icon)
+            var iconURLOne = ("http://openweathermap.org/img/wn/" + iconCodeOne + "@2x.png");
+            $('#weather-icon-1').attr('src', iconURLOne);
+            $("#weather-icon-1").show();
+
+            var iconCodeTwo = (forecast.list[11].weather[0].icon)
+            var iconURLTwo = ("http://openweathermap.org/img/wn/" + iconCodeTwo + "@2x.png");
+            $('#weather-icon-2').attr('src', iconURLTwo);
+            $("#weather-icon-2").show();
+
+            var iconCodeThree = (forecast.list[19].weather[0].icon)
+            var iconURLThree = ("http://openweathermap.org/img/wn/" + iconCodeThree + "@2x.png");
+            $('#weather-icon-3').attr('src', iconURLThree);
+            $("#weather-icon-3").show();
+
+            var iconCodeFour = (forecast.list[27].weather[0].icon)
+            var iconURLFour = ("http://openweathermap.org/img/wn/" + iconCodeFour + "@2x.png");
+            $('#weather-icon-4').attr('src', iconURLFour);
+            $("#weather-icon-4").show();
+
+            var iconCodeFive = (forecast.list[35].weather[0].icon)
+            var iconURLFive = ("http://openweathermap.org/img/wn/" + iconCodeFive + "@2x.png");
+            $('#weather-icon-5').attr('src', iconURLFive);
+            $("#weather-icon-5").show();
+
+            // Add temperatures to each blue card.
+            var tempOne = forecast.list[3].main.temp
+            $(".temp-1").text("Temp: " + tempOne + " °F");
+            var tempTwo = forecast.list[11].main.temp
+            $(".temp-2").text("Temp: " + tempTwo + " °F");
+            var tempThree = forecast.list[19].main.temp
+            $(".temp-3").text("Temp: " + tempThree + " °F");
+            var tempFour = forecast.list[27].main.temp
+            $(".temp-4").text("Temp: " + tempFour + " °F");
+            var tempFive = forecast.list[35].main.temp
+            $(".temp-5").text("Temp: " + tempFive + " °F");
+
+            // Add humidity to each blue card.
+            var humidityOne = forecast.list[3].main.humidity
+            $(".humidity-1").text("Humidity: " + humidityOne + "%");
+            var humidityTwo = forecast.list[11].main.humidity
+            $(".humidity-2").text("Humidity: " + humidityTwo + "%");
+            var humidityThree = forecast.list[19].main.humidity
+            $(".humidity-3").text("Humidity: " + humidityThree + "%");
+            var humidityFour = forecast.list[27].main.humidity
+            $(".humidity-4").text("Humidity: " + humidityFour + "%");
+            var humidityFive = forecast.list[35].main.humidity
+            $(".humidity-5").text("Humidity: " + humidityFive + "%");
           })
 
 
