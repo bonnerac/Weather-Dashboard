@@ -8,7 +8,7 @@ h1 {
 }
 #right-column{
     background-color: rgb(233, 233, 233);
-    height: 530px;
+    height: 630px;
     padding-left: 20px;
 }
 .btn{
@@ -26,6 +26,9 @@ h1 {
 .five-day{
     color: white;
 }
-.user-data{
+#user-data{
     border: black, solid, 1px;
+    color: black;
+    background-color: white;
+    
 }

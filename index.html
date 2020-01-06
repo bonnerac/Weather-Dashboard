@@ -40,8 +40,9 @@
         <div class="card city">
           <div class="card-body">
             <h2 id="city">
-              <img id="weather-icon" src="" alt="Weather icon">
+
             </h2>
+            <img id="weather-icon" src="" alt="Weather icon">
             <h5 id="temp"></h5>
             <h5 id="humidity"></h5>
             <h5 id="wind-speed"></h5>
@@ -108,7 +109,6 @@
 
   <script>
     // Hide all generated info on default
-    $("#weather-icon").hide();
     $(".city").hide();
     $(".forecast").hide();
     // sets an array for search history
@@ -141,8 +141,8 @@
           // Put current weather icon on page
           var iconCode = (conditions.weather[0].icon)
           var iconURL = ("http://openweathermap.org/img/wn/" + iconCode + "@2x.png");
-          $('#weather-icon').attr('src', iconURL);
-          $("#weather-icon").show();
+          $("#weather-icon").attr('src', iconURL);
+          console.log(iconURL)
           // Put current temperature on page
           var temp = conditions.main.temp
           $("#temp").text("Temperature: " + temp + "°");
@@ -247,14 +247,17 @@
 
             // use local storage to store and display search history. NOT WORKING CORRECTLY
             var userCityData = $("#text").val()
-            localStorage.setItem("data", JSON.stringify(userCityData))
             dataArray.push(userCityData)
-            var data = JSON.parse(localStorage.getItem("data"));
+            localStorage.setItem("data", JSON.stringify(dataArray))
+
+
 
             for (i = 0; i < dataArray.length; i++) {
+              var data = JSON.parse(localStorage.getItem("data"));
+              console.log(data)
               $("<div>").attr("id", "user-data").appendTo($("#right-column"))
               $("#user-data").attr("class", "card-body")
-              $("#user-data").text(dataArray)
+              $("#user-data").text(data)
             }
           })
 
