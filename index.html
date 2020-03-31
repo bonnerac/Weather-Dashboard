@@ -129,7 +129,7 @@
           url: queryURL,
           method: "GET"
         }).then(function (conditions) {
-          console.log(conditions);
+
           $("#city").empty();
           $(".city").show();
           // Put City Name on page
@@ -142,7 +142,7 @@
           var iconCode = (conditions.weather[0].icon)
           var iconURL = ("http://openweathermap.org/img/wn/" + iconCode + "@2x.png");
           $("#weather-icon").attr('src', iconURL);
-          console.log(iconURL)
+
           // Put current temperature on page
           var temp = conditions.main.temp
           $("#temp").text("Temperature: " + temp + "°");
@@ -162,7 +162,7 @@
             url: uvURL,
             method: "GET"
           }).then(function (index) {
-            // console.log(index)
+
             var uvIndex = index.value
             $("#UV-index").text("UV Index: " + uvIndex);
             if (uvIndex < 3) {
@@ -184,12 +184,12 @@
 
           var fiveDayURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + APIkey + "&units=imperial"
 
-          console.log(fiveDayURL)
+
           $.ajax({
             url: fiveDayURL,
             method: "GET"
           }).then(function (forecast) {
-            console.log(forecast)
+
             $(".forecast").show();
             // Add dates to the top of each blue card.
             var timestamp1 = moment.unix(forecast.list[3].dt);
@@ -249,15 +249,17 @@
             var userCityData = $("#text").val()
             dataArray.push(userCityData)
             localStorage.setItem("data", JSON.stringify(dataArray))
+            var data = JSON.parse(localStorage.getItem("data"));
 
 
+            for (i = 0; i < data.length; i++) {
 
-            for (i = 0; i < dataArray.length; i++) {
-              var data = JSON.parse(localStorage.getItem("data"));
-              console.log(data)
               $("<div>").attr("id", "user-data").appendTo($("#right-column"))
               $("#user-data").attr("class", "card-body")
-              $("#user-data").text(data)
+              $("user-data").empty();
+              var li = $("<li>").addClass("list-group-item list-group-item-action").text(data[i]);
+              $("#user-data").append(li);
+
             }
           })
 
