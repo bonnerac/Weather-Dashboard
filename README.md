@@ -4,6 +4,13 @@
 ## Desciption
 A weather dashboard using the OpenWeather API. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
 
+## Installation
+No installation needed! Just click on the follwing link to get started: https://bonnerac.github.io/Weather-Dashboard/
+
+## To Use
+
+Simply type the name of a city in the searchbar. The Weather Dashboard will provide you with lots of information about the current and future weather conditions of that city. Previous cities that you searched for will appear on the left side of the screen.
+
 ## Goals
 
 This site is designed to take a city input from the user and display weather information about the selected city. The information includes:
