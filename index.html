@@ -245,7 +245,7 @@
             $(".humidity-5").text("Humidity: " + forecast.list[35].main.humidity + "%");
 
 
-            // use local storage to store and display search history. NOT WORKING CORRECTLY
+            // use local storage to store and display search history. NOT WORKING CORRECTLY YET
             var userCityData = $("#text").val()
             dataArray.push(userCityData)
             localStorage.setItem("data", JSON.stringify(dataArray))
@@ -256,7 +256,7 @@
 
               $("<div>").attr("id", "user-data").appendTo($("#right-column"))
               $("#user-data").attr("class", "card-body")
-              $("user-data").empty();
+              $("#user-data").empty();
               var li = $("<li>").addClass("list-group-item list-group-item-action").text(data[i]);
               $("#user-data").append(li);
 
