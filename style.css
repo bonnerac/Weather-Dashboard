@@ -8,7 +8,7 @@ h1 {
 }
 #right-column{
     background-color: rgb(233, 233, 233);
-    height: 630px;
+    height: auto;
     padding-left: 20px;
 }
 .btn{
@@ -31,4 +31,7 @@ h1 {
     color: black;
     background-color: white;
     
+}
+.card-body{
+    text-align: center;
 }
