@@ -37,6 +37,7 @@ For this project, I used:
 * jQuery
 * Bootstrap
 * Moment.JS
+* Google Fonts
 
 ## Complications
 
