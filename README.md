@@ -1,7 +1,7 @@
 # Weather-Dashboard
 
 
-## Desciption
+## Description
 
 A weather dashboard using the OpenWeather API. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
 
@@ -27,6 +27,8 @@ This site is designed to take a city input from the user and display weather inf
    * featuring dynamically generated date, weather icon, temperature, and humidity.
 * A search history
 
+The weather information is generated dynamically and site is mobile responsive.
+
 ## Technologies Used
 
 For this project, I used:
@@ -44,6 +46,8 @@ During the process of making this weather site, I did run into some problems:
     * I got almost all of the elements on the page that I wanted, but I still feel like I was repeating myself a lot and could have used more for loops to cut down on my overall lines of code.
 * Search History
     * Although I was able to store the user's previous searches in local storage, I was unable to make the search history reappear after refresh. I also was unable to have any city but the last search displayed. 
+* Tablet View
+  * App looks good on desktop and phones, but I had difficulty making it look good for tablets.
     
 ## Author
 * Alex Bonner
