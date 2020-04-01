@@ -5,23 +5,28 @@ h1 {
 #header{
     background-color: #696B6B;
     height: 60px;
+    font-family: 'Krub', sans-serif;
 }
 #right-column{
     background-color: rgb(233, 233, 233);
     height: auto;
     padding-left: 20px;
+    font-family: 'Krub', sans-serif;
 }
 .btn{
     background-color: blue;
 }
 #city-title{
     margin-left: 5px;
+    font-family: 'Krub', sans-serif;
 }
 #city-text{
     padding-top: 15px;
+    font-family: 'Krub', sans-serif;
 }
 #forecast-title{
     margin-left: 45px;
+    font-family: 'Krub', sans-serif;
 }
 .five-day{
     color: white;
@@ -34,4 +39,5 @@ h1 {
 }
 .card-deck{
     text-align: center;
+    font-family: 'Krub', sans-serif;
 }
